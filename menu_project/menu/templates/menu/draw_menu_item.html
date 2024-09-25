@@ -1,0 +1,12 @@
+{% for item, children in menu_tree.items %}
+    <li>
+        <a href="{{ item.url }}" {% if item.url == path %} style="font-size: 18px" {% endif %} >
+            {{ item.name }}
+        </a>
+        {% if children %}
+            <ul {% if item.url not in path %} hidden {% endif %}>
+                {% include 'menu/draw_menu_item.html' with menu_tree=children %}
+            </ul>
+        {% endif %}
+    </li>
+{% endfor %}
